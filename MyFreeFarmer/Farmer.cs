@@ -21,14 +21,12 @@ namespace MyFreeFarmer
             Console.WriteLine("\n----------------------------------");
             Thread.Sleep(3000);
 
-            if(!Actions.Login(this))
-            {
-                Environment.Exit(0);
-                return;
-            }
+            ActionManager.Run();
+            ActionManager.AddToPerform(new FarmAction(this, "Login", null));
 
-            Console.WriteLine("INFO: User: " + m_Info.m_loginUser + "\n     Level: " + m_Info.m_Level + "\n     Points:" + m_Info.m_Points + "\n     Cash: " + m_Info.m_Money + "\n     Coins: " + m_Info.m_Coins);
 
+
+            //Console.WriteLine("INFO: User: " + m_Info.m_loginUser + "\n     Level: " + m_Info.m_Level + "\n     Points:" + m_Info.m_Points + "\n     Cash: " + m_Info.m_Money + "\n     Coins: " + m_Info.m_Coins);
         }
 
     }

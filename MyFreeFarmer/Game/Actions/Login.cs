@@ -9,12 +9,14 @@ namespace MyFreeFarmer.Game
 {
     internal static partial class Actions
     {
-        internal static bool Login(Farmer game)
-        {
-            if (game.m_Info.m_LoggedIn) return false;
+        internal static void Login(Farmer game)
+        {   
+            if (game.m_Info.m_LoggedIn) return;
 
+            ActionManager.isBusy = true;
             //Login phase
-            Utils.FindElementIfExists(game.m_Driver, By.XPath(".//*[@id='loginserver']")).SendKeys(game.m_Info.m_loginServer.ToString());
+            if (game.m_Info.m_loginServer == 1) Utils.FindElementIfExists(game.m_Driver, By.XPath(".//*[@id='loginserver']")).SendKeys("01");
+            else Utils.FindElementIfExists(game.m_Driver, By.XPath(".//*[@id='loginserver']")).SendKeys(game.m_Info.m_loginServer.ToString());
             Utils.FindElementIfExists(game.m_Driver, By.XPath(".//*[@id='loginusername']")).SendKeys(game.m_Info.m_loginUser);
             Utils.FindElementIfExists(game.m_Driver, By.XPath(".//*[@id='loginpassword']")).SendKeys(game.m_Info.m_loginPassword);
 
@@ -33,7 +35,9 @@ namespace MyFreeFarmer.Game
             if(errorMsg != null && errorMsg.Displayed && errorMsg.Text.Contains("Username oder Passwort sind fehlerhaft"))
             {
                 Log.Error("Could not log in using the given account data. (Invalid username or password)");
-                return false;
+                ActionManager.isBusy = false;
+                Environment.Exit(0);
+                return;
             }
 
             //retrieve all the user data along the way
@@ -43,7 +47,8 @@ namespace MyFreeFarmer.Game
             game.m_Info.m_Money = Convert.ToInt32(Utils.FindElementIfExists(game.m_Driver, By.XPath(".//*[@id='bar']")).Text.Replace(".", "").Replace(",", "").Replace(" kT", ""));
             game.m_Info.m_Coins = Convert.ToInt32(Utils.FindElementIfExists(game.m_Driver, By.XPath(".//*[@id='coins']")).Text.Replace(".", ""));
 
-            return (game.m_Info.m_LoggedIn = true);
+            ActionManager.isBusy = false;
+            game.m_Info.m_LoggedIn = true;
         }
     }
 }
