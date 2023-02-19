@@ -18,11 +18,16 @@ namespace MyFreeFarmer
             m_Driver = new FirefoxDriver();
             m_JavaScript = (IJavaScriptExecutor)m_Driver;
             m_Driver.Url = "https://myfreefarm.de";
+            Console.WriteLine("\n----------------------------------");
             Thread.Sleep(3000);
 
-            Actions.Login(this);
+            if(!Actions.Login(this))
+            {
+                Environment.Exit(0);
+                return;
+            }
 
-            Console.WriteLine("INFO: User: " + m_Info.m_loginUser + "\n     Level: " + m_Info.m_Level + "\n     Punkte:" + m_Info.m_Points + "\n     Geld: " + m_Info.m_Money + "\n     Coins: " + m_Info.m_Coins);
+            Console.WriteLine("INFO: User: " + m_Info.m_loginUser + "\n     Level: " + m_Info.m_Level + "\n     Points:" + m_Info.m_Points + "\n     Cash: " + m_Info.m_Money + "\n     Coins: " + m_Info.m_Coins);
 
         }
 

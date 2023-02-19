@@ -20,16 +20,21 @@ namespace MyFreeFarmer.Game
 
             Utils.FindElementIfExists(game.m_Driver, By.XPath(".//*[@id='loginbutton']")).Click();
 
-            Console.WriteLine("Waiting");
-
-            //wait until we got the game loaded
+            //wait until we got the game loaded (logged in) and catch auth error
             var x = Utils.FindElementIfExists(game.m_Driver, By.XPath(".//*[@id='userinfoscontainer']"));
+            var errorMsg = Utils.FindElementIfExists(game.m_Driver, By.XPath(".//*[@id='errormessage']"));
             while (x == null || !x.Displayed)
             {
+                errorMsg = Utils.FindElementIfExists(game.m_Driver, By.XPath(".//*[@id='errormessage']"));
+                if (errorMsg != null && errorMsg.Displayed) break;
                 x = Utils.FindElementIfExists(game.m_Driver, By.XPath(".//*[@id='userinfoscontainer']"));
             }
 
-            Console.WriteLine("Done");
+            if(errorMsg != null && errorMsg.Displayed && errorMsg.Text.Contains("Username oder Passwort sind fehlerhaft"))
+            {
+                Log.Error("Could not log in using the given account data. (Invalid username or password)");
+                return false;
+            }
 
             //retrieve all the user data along the way
 
