@@ -1,8 +1,8 @@
-# FarmBot
+# FarmBot :warning:  WIP
 A bot for your free farm, aiming to do stuff automatic.
 
 
-:warning: ❗ Note that doing bot stuff on your account will lead to an instant ban, once official game moderators have noticed.
+❗ Note that doing bot stuff on your account will lead to an instant ban, once official game moderators have noticed.
 This is a research and progression thing for me personally but it'll be released soon.
 
 ## Planned is:
