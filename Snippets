@@ -1,0 +1,16 @@
+
+using System;
+using System.Text.RegularExpressions;
+
+public class Sample
+{
+    public static bool useRegex(String input)
+    {
+        const Regex regex = new Regex("[A-Za-z0-9]+ <[A-Za-z0-9]+> ", RegexOptions.IgnoreCase);
+        return regex.IsMatch(input);
+    }
+}
+
+
+
+For compiler stuff
