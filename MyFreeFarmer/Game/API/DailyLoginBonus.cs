@@ -15,5 +15,12 @@ namespace MyFreeFarmer.Game.API
             if (x != null && x.Displayed) return true;
             return false;
         }
+
+        public static bool Close(Farmer game)
+        {
+            if (!IsShown(game)) return false;
+            game.m_JavaScript.ExecuteScript("loginbonus.close()");
+            return false;
+        }
     }
 }
