@@ -1,9 +1,4 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyFreeFarmer.Game.API
 {
@@ -14,6 +9,17 @@ namespace MyFreeFarmer.Game.API
             var x = Utils.FindElementIfExists(game.m_Driver, By.XPath(".//*[@id='newsbox']"));
             if (x != null && x.Displayed) return true;
             return false;
+        }
+
+        public static bool Close(Farmer game)
+        {
+            if (IsShown(game))
+            {
+                var x = Utils.FindElementIfExists(game.m_Driver, By.XPath(".//*[@id='newsbox_close']"));
+                if (x != null && x.Displayed) x.Click();
+                return false;
+            }
+            else return false;
         }
     }
 }
