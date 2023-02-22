@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MyFreeFarmer.Game
 {
@@ -11,18 +12,20 @@ namespace MyFreeFarmer.Game
     {
         public Farmer farmer;
         public string Function;
-        public object?[] Arguments;
-        public FarmAction(Farmer frm, string func, object?[] arg)
-        { Function = func; Arguments = arg; farmer = frm; }
+        public List<object> args;
+        public FarmAction(Farmer frm, string func, List<object>li)
+        { 
+            Function = func; args = li; farmer = frm; 
+        }
 
     }
 
-    internal static partial class ActionManager
+    public static partial class ActionManager
     {
 
         static public bool isBusy = false;
         static bool Active;
-        static Thread thread = thread = new Thread(new ThreadStart(Performer));
+        static Thread thread = new Thread(new ThreadStart(Performer));
         static List<FarmAction> ActionList = new List<FarmAction>(); 
 
         public static void AddToPerform(FarmAction fa)
@@ -34,13 +37,15 @@ namespace MyFreeFarmer.Game
         {
             Active = true;
             thread.Start();
-            Log.Info("Action Performer is now running!");
+            Log.Debug("Action Performer is now running!");
         }
-
+        
         public static void Stop()
         {
             Active = false;
-            Log.Info("Action Performer has been stopped!");
+            ActionList.Clear();
+            isBusy = false;
+            //The actual stop happens when performer thread has ended. 
         }
 
         private static void Performer()
@@ -49,25 +54,31 @@ namespace MyFreeFarmer.Game
             {
                 if(ActionList.Count> 0)
                 {
-                    foreach(FarmAction fa in ActionList)
+                    for(int i=0; i<ActionList.Count; i++)
                     {
-                        Log.Info("Action Performer is now performing: " + fa.Function.ToString());
-                        switch (fa.Function)
+                        Log.Info("Now performing: " + ActionList[i].Function.ToString());
+                        switch (ActionList[i].Function)
                         {
                             case "Login":
                                 {
-                                    Actions.Login(fa.farmer);
+                                    Actions.Login(ActionList[i].farmer);
+                                    break;
+                                }
+                            case "SelectRackItem":
+                                {
+                                    Actions.SelectRackItem(ActionList[i].farmer, (int)ActionList[i].args[0]);
                                     break;
                                 }
                         }
                         while (isBusy){} //Wait until isBusy is false again
                         Log.Info("   - Done.");
-                        Thread.Sleep(2000); //Wait two seconds and do the next
+                        Thread.Sleep(1000); //Wait two seconds and do the next
                     }
-                    ActionList.Clear();
                 }
-                Thread.Sleep(5000); //Wait a short time for the next action to be performed, if any
+                ActionList.Clear();
+                Thread.Sleep(3000); //Wait a short time for the next action to be performed, if any
             }
+            Log.Debug("Action Performer stopped.");
             return;
         }
     }
