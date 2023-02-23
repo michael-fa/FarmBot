@@ -27,6 +27,3 @@ factory.start("start", (int)farm_pos, (int)product_type, (int)production_slot)
 >    * `(int)production_slot`: and for what slot
 
 **_Starts the production for a product on the given slot if available_**
-```javascript
-showDiv('farm_buttons1_1'); 
-```
