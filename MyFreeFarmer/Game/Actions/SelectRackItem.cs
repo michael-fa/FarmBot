@@ -12,9 +12,7 @@ namespace MyFreeFarmer.Game
         public static bool SelectRackItem(Farmer game, int item_id)
         {
             if (!game.m_Info.m_LoggedIn) return false;
-            var x = game.m_Driver.FindElementIfExists(By.XPath(".//*[@id='rackitem" + item_id + "']"));
-            if (x == null || !x.Displayed) return false;
-            x.Click();
+            game.m_JavaScript.ExecuteScript("selectRackItem(" + item_id + ");");
             return true;
         }
     }
