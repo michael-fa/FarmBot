@@ -31,14 +31,11 @@ namespace MyFreeFarmer.Game
                 while (x == null || !x.Displayed)
                 {
                     errorMsg = Utils.FindElementIfExists(game.m_Driver, By.XPath(".//*[@id='errormessage']"));
-                    if (errorMsg != null)
+                    if (errorMsg != null && errorMsg.Displayed)
                     {
-                        if(errorMsg.Displayed)
-                        {
-                            Log.Error("Could not log in using the given account data. (Invalid username or password)");
-                            ActionManager.isBusy = false;
-                            return;
-                        }
+                        Log.Error("Could not log in using the given account data. (Invalid username or password)");
+                        ActionManager.isBusy = false;
+                        return;
                     }
                     x = Utils.FindElementIfExists(game.m_Driver, By.XPath(".//*[@id='userinfoscontainer']"));
                 }
@@ -55,7 +52,6 @@ namespace MyFreeFarmer.Game
             game.m_Info.m_LoggedIn = true;
             
             Thread.Sleep(1200);
-            ValueUpdate.Start(game);
             ActionManager.isBusy = false;
         }
     }
