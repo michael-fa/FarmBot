@@ -44,3 +44,20 @@ specialZoneFieldHandler((int)farm_pos);
 ```javascript
 initLocation((int)farm_pos);
 ```
+
+### Navigating (between farms and map)
+
+```javascript
+mapGo2Location((string)location, (int)location_index);
+```
+>* **Parameters:**
+>    * `(string)location`: What "type" of location
+>    * `(int)`: Index of the location, e.g Farm 4 is location = farm, and index = 4.
+
+**_This navigates the game to an area, also a sub-area if available!_**\
+**_:warning: See [Location Names](https://github.com/michael-fa/FarmBot/tree/master/MyFreeFarmer/location_names.md) for more!._**\
+#### :o:
+:bulb: Using this as a farm is the equivalent of initLocation which can be called from anywhere (needs more checking!)
+
+
+
