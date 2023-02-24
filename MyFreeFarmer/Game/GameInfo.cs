@@ -26,14 +26,19 @@ namespace MyFreeFarmer.Game
         //About it's state
         public bool m_LoggedIn = false;
 
-        public int GetCurrentFarm()
+        public Int64 GetCurrentFarm()
         {
-            return (int)m_Game.m_JavaScript.ExecuteScript("return farm");
+            return (Int64)m_Game.m_JavaScript.ExecuteScript("return farm_number");
         }
-        public int m_currentLand = 0;
-        public int GetCurrentRack()
+        public Int64 GetFarmAmount()
         {
-            return (int)m_Game.m_JavaScript.ExecuteScript("return racksort");
+            return (Int64)m_Game.m_JavaScript.ExecuteScript("return farms_data[\"count\"]");
+        }
+
+        public int m_currentLand = 0; //use buildinginfo and its available index? idk
+        public Int64 GetCurrentRack()
+        {
+            return (Int64)m_Game.m_JavaScript.ExecuteScript("return racksort");
         }
 
         //On login retrieved account data

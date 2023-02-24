@@ -8,9 +8,9 @@ namespace MyFreeFarmer.Game.API
 {
     public static class Farm
     {
-        public static bool Switch(int farmid)
+        public static bool Move(Farmer game, int farmid)
         {
-
+            game.m_JavaScript.ExecuteScript("mapGo2Location(\"farm\", " + farmid + ");");
             return true;
         }
     }

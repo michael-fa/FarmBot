@@ -1,5 +1,6 @@
 ﻿using MyFreeFarmer;
 using MyFreeFarmer.Game;
+using MyFreeFarmer.Game.API;
 using OpenQA.Selenium.DevTools;
 using OpenQA.Selenium.DevTools.V108.Page;
 using System.Collections;
@@ -9,7 +10,6 @@ namespace cli
     internal class Program
     {
         static IniFile m_CfgUser = null!;
-        static private Thread m_CmdThread;
         static void Main(string[] args)
         {
             //CustomCode();
@@ -49,6 +49,9 @@ namespace cli
             m_LoginData[2] = m_CfgUser.Read("password");
             Farmer farmer = new Farmer(Convert.ToInt32(m_LoginData[0]), m_LoginData[1], m_LoginData[2]);
 
+            ActionManager.AddToPerform(new FarmAction(farmer, "Login", null!));
+
+
             string[] input = { Console.ReadLine()! };
 
             while (true)
@@ -58,17 +61,19 @@ namespace cli
                     input = Console.ReadLine()!.Split(" ");
                     switch (input[0])
                     {
-                        case "login":
-                            List<object> li = new List<object>();
-                            li.Add(1);
-                            ActionManager.AddToPerform(new FarmAction(farmer, "Login", li));
-                            break;
                         case "selectitem":
-                            li = new List<object>();
+                            List<object> li = new List<object>();
                             li.Add(Int32.Parse(input[1]));
                             ActionManager.AddToPerform(new FarmAction(farmer, "SelectRackItem", li));
                             break;
-                        case "printstats":Console.WriteLine("INFO: User: " + farmer.m_Info.m_loginUser + "\n     Level: " + farmer.m_Info.m_Level + "\n     Points:" + farmer.m_Info.m_Points + "\n     Cash: " + farmer.m_Info.m_Money + "\n     Coins: " + farmer.m_Info.m_Coins);
+                        case "printstats":Console.WriteLine("INFO: User: " + farmer.m_Info.m_loginUser + "\n     Points:" + farmer.m_Info.GetPoints() + "\n     Cash: " + farmer.m_Info.GetMoney() + "\n     Coins: " + farmer.m_Info.GetCoins() + "\n     Premium: " + (farmer.m_Info.HasPremium() ? ("Yes") : ("No") ));
+                            break;
+
+                        case "test":
+                            FarmPositions.Open(farmer, Convert.ToInt32(input[1]));
+                            break;
+                        case "test2":
+                            Farm.Move(farmer, 1);
                             break;
                     }
                 }
@@ -80,7 +85,7 @@ namespace cli
 
         static void CustomCode()
         {
-            
+ 
             Environment.Exit(0);
         }
     }

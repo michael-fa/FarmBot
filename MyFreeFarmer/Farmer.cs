@@ -14,6 +14,8 @@ namespace MyFreeFarmer
             Check for newsbox/error once in a while? 
                   or write an error handler when object is obscured we can get rid of whats in the way
             Startup: Wait for login/password/server div to appear, instead of sleeping 2s
+            CHANGE: Get user info directly from js variables. Valuesetter is done!
+            Find a way to get a players level by his points
 
         */
 
@@ -31,9 +33,11 @@ namespace MyFreeFarmer
             }
 
             //Init the core game structure
-            m_Info = new Game.GameInfo(server, user, password);
+            m_Info = new Game.GameInfo(this, server, user, password);
 
             m_Driver = new FirefoxDriver();
+            m_Driver.Manage().Window.Size = new System.Drawing.Size(1100, 950);
+            m_Driver.Manage().Window.Position = new System.Drawing.Point(850, 1);
             m_JavaScript = (IJavaScriptExecutor)m_Driver;
             m_Driver.Url = "https://myfreefarm.de";
             Console.WriteLine("\n----------------------------------");
@@ -45,8 +49,6 @@ namespace MyFreeFarmer
 
         ~Farmer()
         {
-            if (ValueUpdate.m_Active)
-                ValueUpdate.Stop();
             ActionManager.Stop();
             m_Driver.Quit();
             
