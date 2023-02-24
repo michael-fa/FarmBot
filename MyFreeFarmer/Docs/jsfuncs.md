@@ -1,4 +1,11 @@
-﻿### Show farm pos name (farm_pos_tt_name)
+﻿## Stuff to know
+
+ :o: ``The function's documentation isn't 100% factual.``
+ :heavy_check_mark: ``This function is marked as factual, nothing more to add.``
+ :raised_back_of_hand: ``Function previously marked as done and factual has been re-visited and changed due to notice.``
+
+
+### Show farm pos name (farm_pos_tt_name)
 
 ```javascript
 farmHoverPosition( (bool)toggle, (int)farm_id, (int)pos_id);
@@ -44,6 +51,9 @@ specialZoneFieldHandler((int)farm_pos);
 ```javascript
 initLocation((int)farm_pos);
 ```
+### :heavy_check_mark: Function documentation has been marked as done.
+
+***
 
 ### Navigating (between farms and map)
 
@@ -52,7 +62,7 @@ mapGo2Location((string)location, (int)location_index);
 ```
 >* **Parameters:**
 >    * `(string)location`: What "type" of location
->    * `(int)`: Index of the location, e.g Farm 4 is location = farm, and index = 4.
+>    * `(int)location_index`: Index of the location, e.g Farm 4 is location = farm, and index = 4.
 
 **_This navigates the game to an area, also a sub-area if available!_**\
 **_:warning: See [Location Names](https://github.com/michael-fa/FarmBot/tree/master/MyFreeFarmer/location_names.md) for more!._**\
