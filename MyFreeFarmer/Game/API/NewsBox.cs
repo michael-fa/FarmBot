@@ -15,9 +15,8 @@ namespace MyFreeFarmer.Game.API
         {
             if (IsShown(game))
             {
-                var x = Utils.FindElementIfExists(game.m_Driver, By.XPath(".//*[@id='newsbox_close']"));
-                if (x != null && x.Displayed) x.Click();
-                return false;
+                game.m_JavaScript.ExecuteScript("setNewsUnread(1);");
+                return true;
             }
             else return false;
         }

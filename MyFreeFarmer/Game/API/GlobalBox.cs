@@ -15,9 +15,8 @@ namespace MyFreeFarmer.Game.API
         {
             if (IsShown(game))
             {
-                var x = Utils.FindElementIfExists(game.m_Driver, By.XPath(".//*[@id='globalbox_close']"));
-                if (x != null && x.Displayed) x.Click();
-                return false;
+                game.m_JavaScript.ExecuteScript("hideDiv('globalbox'); hideDiv('globaltransp'); $('globalbox_content').innerHTML = '';");
+                return true;
             }
             else return false;
         }
