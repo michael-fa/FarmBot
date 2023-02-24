@@ -38,8 +38,9 @@ specialZoneFieldHandler((int)farm_pos);
 >* **Parameters:**
 >    * `(int)farm_pos`: the actual position of the garden.
 
-**_This opens the position of a  farm. :warning: Note that this is only for acre land (garden)!\
-For other position types (factories and buildings) try the following:_**
+**_This opens the position of a  farm._**\
+**_:warning: Note that this is only for acre land (garden)! For other position types (factories and buildings) try the following:_**
+
 ```javascript
 initLocation((int)farm_pos);
 ```
