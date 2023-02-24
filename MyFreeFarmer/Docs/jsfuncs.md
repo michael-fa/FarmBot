@@ -3,8 +3,8 @@
  :o: ``The function's documentation isn't 100% factual.``\
  :heavy_check_mark: ``This function is marked as factual, nothing more to add.``\
  :raised_back_of_hand: ``Function previously marked as done and factual has been re-visited and changed due to notice.``\
- \
- \
+
+\
 
 ***
 
