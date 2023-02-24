@@ -19,7 +19,7 @@ showDiv('farm_buttons1_1');
 ### Starting a factory's production
 
 ```javascript
-factory.start("start", (int)farm_pos, (int)product_type, (int)production_slot)
+factory.start("start", (int)farm_pos, (int)product_type, (int)production_slot);
 ```
 >* **Parameters:**
 >    * `(int)farm_pos`: the actual position of the factory/building on the farm.
@@ -27,3 +27,19 @@ factory.start("start", (int)farm_pos, (int)product_type, (int)production_slot)
 >    * `(int)production_slot`: and for what slot
 
 **_Starts the production for a product on the given slot if available_**
+
+***
+
+### Opening a farm pos
+
+```javascript
+specialZoneFieldHandler((int)farm_pos);
+```
+>* **Parameters:**
+>    * `(int)farm_pos`: the actual position of the garden.
+
+**_This opens the position of a  farm. :warning: Note that this is only for acre land (garden)!\
+For other position types (factories and buildings) try the following:_**
+```javascript
+initLocation((int)farm_pos);
+```
