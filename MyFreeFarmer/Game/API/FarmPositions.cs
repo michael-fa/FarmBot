@@ -11,6 +11,13 @@ namespace MyFreeFarmer.Game.API
 {
     public static class FarmPositions
     {
+        public static bool IsAvailable(Farmer game, int landid)
+        {
+            Int64 x = (Int64)game.m_JavaScript.ExecuteScript("return parseInt(farms_data['farms'][" + game.m_Info.GetCurrentFarm() + "][" + landid + "]['status']);");
+            if (x == 1) return true;
+            return false;
+        }
+
         public static bool Open(Farmer game, int landid)
         {
             //Check for any obstructions we can assume may be there
@@ -64,7 +71,7 @@ namespace MyFreeFarmer.Game.API
 
         public static Int64 GetType(Farmer game, int landid) 
         {
-            return (Int64)game.m_JavaScript.ExecuteScript("return parseInt(farms_data['farms'][" +game.m_Info.GetCurrentFarm() + "][" + landid + "]['buildingid']);");
+            return (Int64)game.m_JavaScript.ExecuteScript("return parseInt(farms_data['farms'][" + game.m_Info.GetCurrentFarm() + "][" + landid + "]['buildingid']);");
         }
 
         /*public static bool CultivateField(int fieldid, int item_id)
