@@ -1,4 +1,5 @@
 ﻿using MyFreeFarmer.Game;
+using MyFreeFarmer.Game.API;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 
@@ -16,6 +17,7 @@ namespace MyFreeFarmer
             Startup: Wait for login/password/server div to appear, instead of sleeping 2s
             CHANGE: Get user info directly from js variables. Valuesetter is done!
             Find a way to get a players level by his points
+            routinen erstellen (Stapelverarbeitung)
 
         */
 
@@ -44,14 +46,19 @@ namespace MyFreeFarmer
 
             Thread.Sleep(2000);
 
-            ActionManager.Run();
+            Auth.Login(this);
         }
-
-        ~Farmer()
+        public void Stop()
         {
-            ActionManager.Stop();
-            m_Driver.Quit();
-            
+            try {
+                Log.Debug("Farmer stopped.");
+                m_Driver.Quit();
+
+            }
+            catch (Exception ex)
+            {
+                Log.Exception(ex);
+            }
         }
     }
 }

@@ -4,16 +4,64 @@ using MyFreeFarmer.Game.API;
 using OpenQA.Selenium.DevTools;
 using OpenQA.Selenium.DevTools.V108.Page;
 using System.Collections;
+using System.Runtime.InteropServices;
+using System.Text;
 
 namespace cli
 {
-    internal class Program
+    public class Program
     {
         static IniFile m_CfgUser = null!;
+        static Thread m_CmdThread = null!;
+        public static Farmer m_Farmer = null!;
+
+        [DllImport("Kernel32")]
+        static public extern bool SetConsoleCtrlHandler(EventHandler handler, bool add);
+        public delegate bool EventHandler(CtrlType sig);
+        public static EventHandler? m_Handler;
+        public static bool m_Running = false;
+
+
+
+
+
+
+
+
+
+
+        public enum CtrlType
+        {
+            CTRL_C_EVENT = 0,
+            CTRL_BREAK_EVENT = 1,
+            CTRL_CLOSE_EVENT = 2,
+            CTRL_LOGOFF_EVENT = 5,
+            CTRL_SHUTDOWN_EVENT = 6
+        }
+
+        public static bool Handler(CtrlType sig)
+        {
+            switch (sig)
+            {
+                case CtrlType.CTRL_C_EVENT:
+                case CtrlType.CTRL_LOGOFF_EVENT:
+                case CtrlType.CTRL_SHUTDOWN_EVENT:
+                case CtrlType.CTRL_CLOSE_EVENT:
+                    CloseSafely();
+                    return false;
+                default:
+                    return false;
+            }
+        }
+
+
         static void Main(string[] args)
         {
+            m_Running = true;
             //CustomCode();
-
+            Console.OutputEncoding = Encoding.Unicode;
+            m_Handler += new EventHandler(Handler);
+            SetConsoleCtrlHandler(m_Handler, true);
 
             string[] m_LoginData = { "", "", "" };
             
@@ -47,45 +95,59 @@ namespace cli
             m_LoginData[0] = m_CfgUser.Read("server");
             m_LoginData[1] = m_CfgUser.Read("username");
             m_LoginData[2] = m_CfgUser.Read("password");
-            Farmer farmer = new Farmer(Convert.ToInt32(m_LoginData[0]), m_LoginData[1], m_LoginData[2]);
+            m_Farmer = new Farmer(Convert.ToInt32(m_LoginData[0]), m_LoginData[1], m_LoginData[2]);
 
-            ActionManager.AddToPerform(new FarmAction(farmer, "Login", null!));
+            m_CmdThread = new Thread(() => CommandHandler());
+            m_CmdThread.Start();
+        }
 
+        static public void CommandHandler()
+        {
+            string input = Console.ReadLine();
+            string[] args = input.Split(' ');
 
-            string[] input = { Console.ReadLine()! };
-
-            while (true)
+            while (m_Running)
             {
-                if (input.Length>0)
+                if (input.Length > 0)
                 {
-                    input = Console.ReadLine()!.Split(" ");
-                    switch (input[0])
+                    switch (args[0])
                     {
                         case "selectitem":
                             List<object> li = new List<object>();
-                            li.Add(Int32.Parse(input[1]));
-                            ActionManager.AddToPerform(new FarmAction(farmer, "SelectRackItem", li));
+                            li.Add(Int32.Parse(args[1]));
+                            //ActionManager.AddToPerform(new FarmAction(m_Farmer, "SelectRackItem", li));
                             break;
-                        case "printstats":Console.WriteLine("INFO: User: " + farmer.m_Info.m_loginUser + "\n     Points:" + farmer.m_Info.GetPoints() + "\n     Cash: " + farmer.m_Info.GetMoney() + "\n     Coins: " + farmer.m_Info.GetCoins() + "\n     Premium: " + (farmer.m_Info.HasPremium() ? ("Yes") : ("No") ));
+                        case "printstats":
+                            Console.WriteLine("INFO: User: " + m_Farmer.m_Info.m_loginUser + "\n     Points:" + m_Farmer.m_Info.GetPoints() + "\n     Cash: " + m_Farmer.m_Info.GetMoney() + "\n     Coins: " + m_Farmer.m_Info.GetCoins() + "\n     Premium: " + (m_Farmer.m_Info.HasPremium() ? ("Yes") : ("No")));
                             break;
 
                         case "test":
-                            FarmPositions.Open(farmer, Convert.ToInt32(input[1]));
+                            FarmPositions.Open(m_Farmer, Convert.ToInt32(args[1]));
                             break;
                         case "test2":
-                            Farm.Move(farmer, 1);
+                            Farm.Move(m_Farmer, Convert.ToInt32(args[1]));
                             break;
                     }
                 }
                 Thread.Sleep(100);
+                input = Console.ReadLine();
+                args = input.Split(' ');
             }
-
-
         }
 
         static void CustomCode()
         {
  
+            Environment.Exit(0);
+        }
+
+        static void CloseSafely()
+        {
+            m_Running = false;
+            m_Farmer.Stop();
+            //copy current log txt to one with the date in name and delete the old one | we also replace : or / to - so that theres no language based error in folder/file names
+            File.Copy(System.AppContext.BaseDirectory + "/Logs/current.txt", (System.AppContext.BaseDirectory + "Logs/" + DateTime.Now.ToString().Replace(':', '-').Replace('/', '-') + ".txt"));
+            if (File.Exists(System.AppContext.BaseDirectory + "/Logs/current.txt")) File.Delete(System.AppContext.BaseDirectory + "/Logs/current.txt");
             Environment.Exit(0);
         }
     }

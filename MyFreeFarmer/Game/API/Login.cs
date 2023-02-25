@@ -1,21 +1,18 @@
 ﻿using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyFreeFarmer.Game
+namespace MyFreeFarmer.Game.API
 {
-    public static partial class Actions
+    public static class Auth
     {
         public static void Login(Farmer game)
-        {   
+        {
             if (game.m_Info.m_LoggedIn) return;
 
-            ActionManager.isBusy = true;
-            //Login phase
             try
             {
                 if (game.m_Info.m_loginServer == 1) Utils.FindElementIfExists(game.m_Driver, By.XPath(".//*[@id='loginserver']")).SendKeys("01");
@@ -34,7 +31,6 @@ namespace MyFreeFarmer.Game
                     if (errorMsg != null && errorMsg.Displayed)
                     {
                         Log.Error("Could not log in using the given account data. (Invalid username or password)");
-                        ActionManager.isBusy = false;
                         return;
                     }
                     x = Utils.FindElementIfExists(game.m_Driver, By.XPath(".//*[@id='userinfoscontainer']"));
@@ -42,17 +38,14 @@ namespace MyFreeFarmer.Game
             }
             catch (Exception ex)
             {
-                switch(ex.InnerException)
+                switch (ex.InnerException)
                 {
-                    case NoSuchElementException: HandleObstructingElements(game, ex); break;
-                    case ElementClickInterceptedException: HandleObstructingElements(game, ex); break;
+                    case NoSuchElementException: ; break;
+                    case ElementClickInterceptedException: break;
                 }
             }
             finally { }
             game.m_Info.m_LoggedIn = true;
-            
-            Thread.Sleep(1200);
-            ActionManager.isBusy = false;
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
+/*
 namespace MyFreeFarmer.Game
 {
     public struct FarmAction
@@ -42,6 +43,7 @@ namespace MyFreeFarmer.Game
         
         public static void Stop()
         {
+            while (isBusy) { }
             Active = false;
             ActionList.Clear();
             isBusy = false;
@@ -52,10 +54,11 @@ namespace MyFreeFarmer.Game
         {
             while (Active)
             {
-                if(ActionList.Count> 0)
+                if(ActionList.Count> 0 && ActionList != null)
                 {
                     for(int i=0; i<ActionList.Count; i++)
                     {
+                        if (ActionList[i].farmer.m_Driver == null) continue;
                         Log.Info("Now performing: " + ActionList[i].Function.ToString());
                         switch (ActionList[i].Function)
                         {
@@ -83,3 +86,4 @@ namespace MyFreeFarmer.Game
         }
     }
 }
+*/
