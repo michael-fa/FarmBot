@@ -15,6 +15,8 @@ namespace MyFreeFarmer.Game
         public string m_loginPassword;
         private Farmer m_Game;
 
+        public bool m_IsBusy = false;
+
         public GameInfo(Farmer game, int pServer, string pUser, string pPass)
         {
             m_Game    = game;
@@ -23,7 +25,6 @@ namespace MyFreeFarmer.Game
             m_loginPassword = pPass;   
         }
 
-        //About it's state
         public bool m_LoggedIn = false;
 
         public Int64 GetCurrentFarm()
@@ -41,8 +42,6 @@ namespace MyFreeFarmer.Game
             return (Int64)m_Game.m_JavaScript.ExecuteScript("return racksort");
         }
 
-        //On login retrieved account data
-        //public int m_Level;
         public int GetPoints()
         {
             return Convert.ToInt32(m_Game.m_JavaScript.ExecuteScript("return user_points"));
