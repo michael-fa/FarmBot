@@ -1,5 +1,4 @@
 ﻿using MyFreeFarmer;
-using MyFreeFarmer.Game;
 using MyFreeFarmer.Game.API;
 using OpenQA.Selenium.DevTools;
 using OpenQA.Selenium.DevTools.V108.Page;
@@ -103,7 +102,7 @@ namespace cli
 
         static public void CommandHandler()
         {
-            string input = Console.ReadLine();
+            string input = Console.ReadLine()!;
             string[] args = input.Split(' ');
 
             while (m_Running)
@@ -115,22 +114,19 @@ namespace cli
                         case "selectitem":
                             List<object> li = new List<object>();
                             li.Add(Int32.Parse(args[1]));
-                            //ActionManager.AddToPerform(new FarmAction(m_Farmer, "SelectRackItem", li));
                             break;
                         case "printstats":
                             Console.WriteLine("INFO: User: " + m_Farmer.m_Info.m_loginUser + "\n     Points:" + m_Farmer.m_Info.GetPoints() + "\n     Cash: " + m_Farmer.m_Info.GetMoney() + "\n     Coins: " + m_Farmer.m_Info.GetCoins() + "\n     Premium: " + (m_Farmer.m_Info.HasPremium() ? ("Yes") : ("No")));
                             break;
 
                         case "test":
-                            FarmPositions.Open(m_Farmer, Convert.ToInt32(args[1]));
-                            break;
-                        case "test2":
-                            Farm.Move(m_Farmer, Convert.ToInt32(args[1]));
+                            //GlobalBox.Show(m_Farmer, "MyFreeFarmer - TEST BOX", "This box is shown from the programmed bot, kinda hooking in to the javascript of this game. This text is especially long cuz we wanna see how it acts....Also this game is cool, play it, buy coins.", GlobalBox.GB_DISPLAY_STYLE.ICONS_YES_ONLY);
+                            FarmPositions.Open(m_Farmer, 1);
                             break;
                     }
                 }
                 Thread.Sleep(100);
-                input = Console.ReadLine();
+                input = Console.ReadLine()!;
                 args = input.Split(' ');
             }
         }
@@ -144,7 +140,7 @@ namespace cli
         static void CloseSafely()
         {
             m_Running = false;
-            m_Farmer.Stop();
+            if(m_Farmer != null)m_Farmer.Stop();
             //copy current log txt to one with the date in name and delete the old one | we also replace : or / to - so that theres no language based error in folder/file names
             File.Copy(System.AppContext.BaseDirectory + "/Logs/current.txt", (System.AppContext.BaseDirectory + "Logs/" + DateTime.Now.ToString().Replace(':', '-').Replace('/', '-') + ".txt"));
             if (File.Exists(System.AppContext.BaseDirectory + "/Logs/current.txt")) File.Delete(System.AppContext.BaseDirectory + "/Logs/current.txt");
