@@ -13,6 +13,7 @@ namespace MyFreeFarmer.Game.API
         {
             if (game.m_Info.m_LoggedIn) return;
 
+            game.m_Info.m_IsBusy = true;
             try
             {
                 if (game.m_Info.m_loginServer == 1) Utils.FindElementIfExists(game.m_Driver, By.XPath(".//*[@id='loginserver']")).SendKeys("01");
@@ -20,7 +21,7 @@ namespace MyFreeFarmer.Game.API
                 Utils.FindElementIfExists(game.m_Driver, By.XPath(".//*[@id='loginusername']")).SendKeys(game.m_Info.m_loginUser);
                 Utils.FindElementIfExists(game.m_Driver, By.XPath(".//*[@id='loginpassword']")).SendKeys(game.m_Info.m_loginPassword);
 
-                Utils.FindElementIfExists(game.m_Driver, By.XPath(".//*[@id='loginbutton']")).Click();
+                game.m_JavaScript.ExecuteScript("createToken();");
 
                 //wait until we got the game loaded (logged in) and catch auth error
                 var x = Utils.FindElementIfExists(game.m_Driver, By.XPath(".//*[@id='userinfoscontainer']"));
@@ -46,6 +47,7 @@ namespace MyFreeFarmer.Game.API
             }
             finally { }
             game.m_Info.m_LoggedIn = true;
+            game.m_Info.m_IsBusy = false;
         }
     }
 }
