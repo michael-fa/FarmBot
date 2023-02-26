@@ -8,6 +8,17 @@
 
 ***
 
+### Login using login-form input (instead of clicking login button)
+
+```javascript
+createToken();
+```
+>* **This function has no parameters.
+
+**_You still need to insert the user name, password and choose between servers "yourself" via html click_**
+
+***
+
 ### Show farm pos name (farm_pos_tt_name)
 
 ```javascript
@@ -69,8 +80,48 @@ mapGo2Location((string)location, (int)location_index);
 
 **_This navigates the game to an area, also a sub-area if available!_**\
 **_:warning: See [Location Names](https://github.com/michael-fa/FarmBot/tree/master/MyFreeFarmer/location_names.md) for more!._**\
-#### :o:
+#### :o: Marked as uncompleted in its documentation
 :bulb: Using this as a farm is the equivalent of initLocation which can be called from anywhere (needs more checking!)
+
+***
+
+### Planting item on garden spot (garden)
+
+:info: First make sure you opened the position (farm land) first. 
+
+```javascript
+parent.cache_me((int)pos, (int)item_id, (int[])prod_idx = garten_prod[item_id], (int[])cat_idx = garten_kategorie[item_id]);
+```
+>* **Parameters:**
+>    * `(int)pos`: The id of the position on the farm
+>    * `(int)item_id`: The id of the item to be planted.
+>    * `(int)prod_idx`: Simply use garten_prod[item_id] in this place.
+>    * `(int)cat_idx`: Simply use garten_kategorie[item_id] in this place.
+
+**_This should plant / cultivate a spot on a acre locted on your farm._**
+**_To place on another farm you should first move to it, then use this function._**
+#### :o: Marked as uncompleted in its documentation
+
+***
+
+### Display a global box
+
+:info: This displays a global box kind of as a info box, with title, text, check and close icon.
+
+```javascript
+globalBox((string)"title", (string)"content", (function)onClickYes(), (function)onClickCancel, (bool)no_cancel);
+```
+>* **Parameters:**
+>    * `(string)title`: The box title.
+>    * `(string)content`: The message to display.
+>    * `(function)onClickYes`: The function to execute when green icon is clicked.
+>    * `(function)onClickCancel`: The function to execute when red icon is clicked.
+>    * `(int)show_check`: is onClickCancel is null and this 1, only the green will appear.
+>    * `unk`: This parameter has not been identified yet.
+>    * `unk`: This parameter has not been identified yet.
+**_As for the first paramters it should work fine as explained!_**
+#### :o: Marked as uncompleted in its documentation
+
 
 
 
