@@ -2,6 +2,7 @@
 using MyFreeFarmer.Game.API;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
+using System.Diagnostics;
 
 namespace MyFreeFarmer
 {
@@ -9,16 +10,13 @@ namespace MyFreeFarmer
     {
         public Game.GameInfo m_Info;
         public IWebDriver m_Driver = null!;
+        public FirefoxDriverService m_DriverService = FirefoxDriverService.CreateDefaultService();
         public IJavaScriptExecutor m_JavaScript = null!;
 
         /*Todo:
-            Check for newsbox/error once in a while? 
-                  or write an error handler when object is obscured we can get rid of whats in the way
-            Startup: Wait for login/password/server div to appear, instead of sleeping 2s
-            CHANGE: Get user info directly from js variables. Valuesetter is done!
-            Find a way to get a players level by his points
-            routinen erstellen (Stapelverarbeitung)
-
+         * Startup: Wait for login/password/server div to appear, instead of sleeping 2s
+         * Find a way to get a players level by his points
+         * routinen erstellen (Stapelverarbeitung)
         */
 
         public Farmer(int server, string user, string password)
@@ -34,30 +32,33 @@ namespace MyFreeFarmer
                 return;
             }
 
-            //Init the core game structure
-            m_Info = new Game.GameInfo(this, server, user, password);
+            try
+            {
+                //Init the "core game" structure
+                m_Info = new Game.GameInfo(this, server, user, password);
+                m_Driver = new FirefoxDriver(m_DriverService);
+                Log.Debug("PID = " + m_DriverService.ProcessId);
+                m_Driver.Manage().Window.Size = new System.Drawing.Size(1100, 950);
+                m_Driver.Manage().Window.Position = new System.Drawing.Point(850, 1);
+                m_JavaScript = (IJavaScriptExecutor)m_Driver;
+                m_Driver.Url = "https://myfreefarm.de";
+                Console.WriteLine("\n----------------------------------");
 
-            m_Driver = new FirefoxDriver();
-            m_Driver.Manage().Window.Size = new System.Drawing.Size(1100, 950);
-            m_Driver.Manage().Window.Position = new System.Drawing.Point(850, 1);
-            m_JavaScript = (IJavaScriptExecutor)m_Driver;
-            m_Driver.Url = "https://myfreefarm.de";
-            Console.WriteLine("\n----------------------------------");
+                Thread.Sleep(2000);
 
-            Thread.Sleep(2000);
+                Auth.Login(this);
+            }
+            catch { }
 
-            Auth.Login(this);
+            
         }
         public void Stop()
         {
-            try {
-                Log.Debug("Farmer stopped.");
-                m_Driver.Quit();
-
-            }
-            catch (Exception ex)
+            while (this.m_Info.m_IsBusy) { }
+            foreach(Process proc in Process.GetProcesses())
             {
-                Log.Exception(ex);
+                if (proc.MainWindowTitle.Contains("My Free Farm"))
+                    proc.Kill();
             }
         }
     }
