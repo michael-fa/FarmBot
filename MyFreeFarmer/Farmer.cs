@@ -58,7 +58,9 @@ namespace MyFreeFarmer
             foreach(Process proc in Process.GetProcesses())
             {
                 if (proc.MainWindowTitle.Contains("My Free Farm"))
-                    proc.Kill();
+                    proc.CloseMainWindow();
+
+                
             }
         }
     }

@@ -109,19 +109,17 @@ namespace cli
             {
                 if (input.Length > 0)
                 {
-                    switch (args[0])
+                    switch (input)
                     {
                         case "selectitem":
                             List<object> li = new List<object>();
                             li.Add(Int32.Parse(args[1]));
                             break;
                         case "printstats":
-                            Console.WriteLine("INFO: User: " + m_Farmer.m_Info.m_loginUser + "\n     Points:" + m_Farmer.m_Info.GetPoints() + "\n     Cash: " + m_Farmer.m_Info.GetMoney() + "\n     Coins: " + m_Farmer.m_Info.GetCoins() + "\n     Premium: " + (m_Farmer.m_Info.HasPremium() ? ("Yes") : ("No")));
+                            Console.WriteLine("INFO: User: " + m_Farmer.m_Info.m_loginUser + "\n     Level: " + m_Farmer.m_Info.GetLevel() + "\n     Points:" + m_Farmer.m_Info.GetPoints() + "\n     Cash: " + m_Farmer.m_Info.GetMoney() + "\n     Coins: " + m_Farmer.m_Info.GetCoins() + "\n     Premium: " + (m_Farmer.m_Info.HasPremium() ? ("Yes") : ("No")));
                             break;
 
                         case "test":
-                            //GlobalBox.Show(m_Farmer, "MyFreeFarmer - TEST BOX", "This box is shown from the programmed bot, kinda hooking in to the javascript of this game. This text is especially long cuz we wanna see how it acts....Also this game is cool, play it, buy coins.", GlobalBox.GB_DISPLAY_STYLE.ICONS_YES_ONLY);
-                            FarmPositions.Open(m_Farmer, 1);
                             break;
                     }
                 }
