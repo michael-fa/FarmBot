@@ -74,11 +74,17 @@ namespace MyFreeFarmer.Game.API
             return (Int64)game.m_JavaScript.ExecuteScript("return parseInt(farms_data['farms'][" + game.m_Info.GetCurrentFarm() + "][" + landid + "]['buildingid']);");
         }
 
-        /*public static bool CultivateField(int fieldid, int item_id)
+        /// <summary>
+        /// Make sure you always selectRackItem to choose a item before using this.
+        /// </summary>
+        /// <param name="game">The bot instance.</param>
+        /// <param name="fieldid">The field on the farm pos to plant something.</param>
+        public static void CultivateField(Farmer game, int fieldid)
         {
-            
+            game.m_JavaScript.ExecuteScript("parent.cache_me(" + game.m_Info.m_currentLand + ", " + fieldid + ", garten_prod[" + fieldid + "], garten_kategorie[" + fieldid + "]);");
         }
 
+        /*
         public static bool HarvestField(int fieldid)
         {
 

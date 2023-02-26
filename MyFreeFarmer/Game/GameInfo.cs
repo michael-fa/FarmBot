@@ -1,5 +1,8 @@
-﻿using System;
+﻿using OpenQA.Selenium.DevTools;
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,15 +34,34 @@ namespace MyFreeFarmer.Game
         {
             return (Int64)m_Game.m_JavaScript.ExecuteScript("return farm_number");
         }
-        public Int64 GetFarmAmount()
+        public Int64 FarmCount()
         {
             return (Int64)m_Game.m_JavaScript.ExecuteScript("return farms_data[\"count\"]");
+        }
+
+        public int AvailablePositionCount(int farmid)
+        {
+            int ct = 0; 
+            
+            
+            //We always have the first pos.
+            for(int i=1 ; i<=6; i++)
+            {
+                if ((Int64)m_Game.m_JavaScript.ExecuteScript("return parseInt(farms_data.farms[" + farmid + "][" + i + "][\"buildingid\"]);") == 0) continue;
+                ct++;
+            }
+            return ct;
         }
 
         public int m_currentLand = 0; //use buildinginfo and its available index? idk
         public Int64 GetCurrentRack()
         {
             return (Int64)m_Game.m_JavaScript.ExecuteScript("return racksort");
+        }
+
+        public Int64 GetLevel()
+        {
+            return (Int64)m_Game.m_JavaScript.ExecuteScript("return currentuserlevel");
         }
 
         public int GetPoints()
