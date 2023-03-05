@@ -120,6 +120,7 @@ namespace cli
                             break;
 
                         case "test":
+                            FarmPositions.ClearField(m_Farmer, Int32.Parse(args[1]));
                             break;
                     }
                 }

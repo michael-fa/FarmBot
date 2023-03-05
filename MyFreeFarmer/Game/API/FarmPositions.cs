@@ -13,7 +13,7 @@ namespace MyFreeFarmer.Game.API
     {
         public static bool IsAvailable(Farmer game, int landid)
         {
-            Int64 x = (Int64)game.m_JavaScript.ExecuteScript("return parseInt(farms_data['farms'][" + game.m_Info.GetCurrentFarm() + "][" + landid + "]['status']);");
+            Int64 x = (Int64)game.m_JavaScript.ExecuteScript("return parseInt(farms_data['farms'][" + game.m_Info.CurrentFarm() + "][" + landid + "]['status']);");
             if (x == 1) return true;
             return false;
         }
@@ -29,7 +29,7 @@ namespace MyFreeFarmer.Game.API
 
             try
             {
-                var x = Utils.FindElementIfExists(game.m_Driver, By.XPath(".//*[@id='farm" + game.m_Info.GetCurrentFarm().ToString() + "_pos" + landid.ToString() + "']"));
+                var x = Utils.FindElementIfExists(game.m_Driver, By.XPath(".//*[@id='farm" + game.m_Info.CurrentFarm().ToString() + "_pos" + landid.ToString() + "']"));
                 if (GetType(game, landid) == 0) return false;
                 if (x != null && x.Displayed) x.Click();
             }
@@ -71,7 +71,7 @@ namespace MyFreeFarmer.Game.API
 
         public static Int64 GetType(Farmer game, int landid) 
         {
-            return (Int64)game.m_JavaScript.ExecuteScript("return parseInt(farms_data['farms'][" + game.m_Info.GetCurrentFarm() + "][" + landid + "]['buildingid']);");
+            return (Int64)game.m_JavaScript.ExecuteScript("return parseInt(farms_data['farms'][" + game.m_Info.CurrentFarm() + "][" + landid + "]['buildingid']);");
         }
 
         /// <summary>
@@ -81,24 +81,27 @@ namespace MyFreeFarmer.Game.API
         /// <param name="fieldid">The field on the farm pos to plant something.</param>
         public static void CultivateField(Farmer game, int fieldid)
         {
+            game.m_JavaScript.ExecuteScript("selectMode(0, true, selected);");
             game.m_JavaScript.ExecuteScript("parent.cache_me(" + game.m_Info.m_currentLand + ", " + fieldid + ", garten_prod[" + fieldid + "], garten_kategorie[" + fieldid + "]);");
         }
 
-        /*
-        public static bool HarvestField(int fieldid)
+        
+        public static void HarvestField(Farmer game, int fieldid)
         {
-
+            game.m_JavaScript.ExecuteScript("selectMode(1, true, selected);");
+            game.m_JavaScript.ExecuteScript("parent.cache_me(" + game.m_Info.m_currentLand + ", " + fieldid + ", garten_prod[" + fieldid + "], garten_kategorie[" + fieldid + "]);");
         }
 
-        public static bool WaterField(int fieldid)
+
+        public static void WaterField(Farmer game, int fieldid)
         {
+            game.m_JavaScript.ExecuteScript("selectMode(2, true, selected);");
+            game.m_JavaScript.ExecuteScript("parent.cache_me(" + game.m_Info.m_currentLand + ", " + fieldid + ", garten_prod[" + fieldid + "], garten_kategorie[" + fieldid + "]);");
+        }
 
-        }*/
-
-            /* TO BE WORKED ON LATER.
-            public static bool ClearField(int fieldid)
-            {
-
-            }*/
+        public static void ClearField(Farmer game, int fieldid)
+        {
+            game.m_JavaScript.ExecuteScript("raeumeFeld(" + game.m_Info.m_currentLand + ", " + fieldid + ");");
         }
     }
+}

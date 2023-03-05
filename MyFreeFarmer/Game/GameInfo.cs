@@ -30,10 +30,11 @@ namespace MyFreeFarmer.Game
 
         public bool m_LoggedIn = false;
 
-        public Int64 GetCurrentFarm()
+        public Int64 CurrentFarm()
         {
             return (Int64)m_Game.m_JavaScript.ExecuteScript("return farm_number");
         }
+
         public Int64 FarmCount()
         {
             return (Int64)m_Game.m_JavaScript.ExecuteScript("return farms_data[\"count\"]");
@@ -42,7 +43,6 @@ namespace MyFreeFarmer.Game
         public int AvailablePositionCount(int farmid)
         {
             int ct = 0; 
-            
             
             //We always have the first pos.
             for(int i=1 ; i<=6; i++)
@@ -68,10 +68,13 @@ namespace MyFreeFarmer.Game
         {
             return Convert.ToInt32(m_Game.m_JavaScript.ExecuteScript("return user_points"));
         }
+
         public string GetMoney()
         {
+            //Note: This is not the actual money
             return Convert.ToString(m_Game.m_JavaScript.ExecuteScript("return user_bar"))!;
         }
+
         public string GetCoins()
         {
             return Convert.ToString(m_Game.m_JavaScript.ExecuteScript("return user_coins"))!;
