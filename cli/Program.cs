@@ -109,7 +109,7 @@ namespace cli
             {
                 if (input.Length > 0)
                 {
-                    switch (input)
+                    switch (input.Split(' ').ToArray()[0])
                     {
                         case "selectitem":
                             List<object> li = new List<object>();
@@ -120,6 +120,7 @@ namespace cli
                             break;
 
                         case "test":
+                            Console.WriteLine("TEST CMD CALLED");
                             FarmPositions.ClearField(m_Farmer, Int32.Parse(args[1]));
                             break;
                     }

@@ -101,7 +101,8 @@ namespace MyFreeFarmer.Game.API
 
         public static void ClearField(Farmer game, int fieldid)
         {
-            game.m_JavaScript.ExecuteScript("raeumeFeld(" + game.m_Info.m_currentLand + ", " + fieldid + ");");
+            Console.WriteLine("raeumeFeld(" + game.m_Info.m_currentLand + ", " + fieldid + ");");
+            game.m_JavaScript.ExecuteScript("raeumeFeld(\" + game.m_Info.m_currentLand + \", \" + fieldid + \");");
         }
     }
 }

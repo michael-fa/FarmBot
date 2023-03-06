@@ -61,7 +61,7 @@ namespace MyFreeFarmer.Game
 
         public Int64 GetLevel()
         {
-            return (Int64)m_Game.m_JavaScript.ExecuteScript("return currentuserlevel");
+            return (Int64)m_Game.m_JavaScript.ExecuteScript("return parseInt(currentuserlevel);");
         }
 
         public int GetPoints()
