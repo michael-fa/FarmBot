@@ -84,14 +84,12 @@ namespace MyFreeFarmer.Game.API
             game.m_JavaScript.ExecuteScript("selectMode(0, true, selected);");
             game.m_JavaScript.ExecuteScript("parent.cache_me(" + game.m_Info.m_currentLand + ", " + fieldid + ", garten_prod[" + fieldid + "], garten_kategorie[" + fieldid + "]);");
         }
-
         
         public static void HarvestField(Farmer game, int fieldid)
         {
             game.m_JavaScript.ExecuteScript("selectMode(1, true, selected);");
             game.m_JavaScript.ExecuteScript("parent.cache_me(" + game.m_Info.m_currentLand + ", " + fieldid + ", garten_prod[" + fieldid + "], garten_kategorie[" + fieldid + "]);");
         }
-
 
         public static void WaterField(Farmer game, int fieldid)
         {
@@ -103,6 +101,21 @@ namespace MyFreeFarmer.Game.API
         {
             Console.WriteLine("raeumeFeld(" + game.m_Info.m_currentLand + ", " + fieldid + ");");
             game.m_JavaScript.ExecuteScript("raeumeFeld(\" + game.m_Info.m_currentLand + \", \" + fieldid + \");");
+        }
+
+
+        //Whole
+
+        public static void HarvestGarden(Farmer game, int pos)
+        {
+            game.m_JavaScript.ExecuteScript("cropGarden(" + pos + ");");
+            if (GlobalBox.IsShown(game)) GlobalBox.Close(game);
+        }
+
+        public static void WaterGarden(Farmer game, int pos)
+        {
+            game.m_JavaScript.ExecuteScript("waterGarden(" + pos + ");");
+            if (GlobalBox.IsShown(game)) GlobalBox.Close(game);
         }
     }
 }

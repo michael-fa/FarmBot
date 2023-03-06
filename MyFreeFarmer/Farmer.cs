@@ -17,6 +17,7 @@ namespace MyFreeFarmer
          * Startup: Wait for login/password/server div to appear, instead of sleeping 2s
          * Find a way to get a players level by his points
          * routinen erstellen (Stapelverarbeitung)
+         * Find a way to get a JS value about the current open position
         */
 
         public Farmer(int server, string user, string password)
