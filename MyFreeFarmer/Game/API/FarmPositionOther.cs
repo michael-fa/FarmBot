@@ -8,18 +8,17 @@ namespace MyFreeFarmer.Game.API
 {
     public static class FarmPositionOther
     {
-        public static bool Retrieve()
+        //So this apparently opens the position container up. We should not assume we are still on farm overview here!
+        public static bool Retrieve(Farmer game, int farmID, int posID, int slotID)
         {
+            game.m_JavaScript.ExecuteScript("farmAction('harvestProduction', " + farmID + ", " + posID + ", " + slotID + ");");
             return true;
         }
 
-        /*
-        public static bool StartProduction(Farmer game, int item_id, int slot)
+        public static bool StartProduction(Farmer game, int posID, int productionSlotID, int possibleProductSlot)
         {
-            if (!game.m_Info.m_LoggedIn) return false;
-            
-            game.m_JavaScript.ExecuteScript("selectRackItem(" + item_id + ");");
+            game.m_JavaScript.ExecuteScript("factory.start('start', " + posID + ", " + productionSlotID + ", " + possibleProductSlot + ");");
             return true;
-        }*/
+        }
     }
 }

@@ -108,12 +108,14 @@ namespace MyFreeFarmer.Game.API
 
         public static void HarvestGarden(Farmer game, int pos)
         {
+            if (!game.m_Info.HasPremium()) return;
             game.m_JavaScript.ExecuteScript("cropGarden(" + pos + ");");
             if (GlobalBox.IsShown(game)) GlobalBox.Close(game);
         }
 
         public static void WaterGarden(Farmer game, int pos)
         {
+            if (!game.m_Info.HasPremium()) return;
             game.m_JavaScript.ExecuteScript("waterGarden(" + pos + ");");
             if (GlobalBox.IsShown(game)) GlobalBox.Close(game);
         }
