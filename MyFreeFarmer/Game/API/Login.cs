@@ -1,4 +1,6 @@
-﻿using OpenQA.Selenium;
+﻿using AMXWrapperCore;
+using MyFreeFarmer.Game.Scripting;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +28,7 @@ namespace MyFreeFarmer.Game.API
                 //wait until we got the game loaded (logged in) and catch auth error
                 var x = Utils.FindElementIfExists(game.m_Driver, By.XPath(".//*[@id='userinfoscontainer']"));
                 IWebElement errorMsg = null!;
+                Thread.Sleep(2000);
                 while (x == null || !x.Displayed)
                 {
                     errorMsg = Utils.FindElementIfExists(game.m_Driver, By.XPath(".//*[@id='errormessage']"));
@@ -47,6 +50,14 @@ namespace MyFreeFarmer.Game.API
             }
             finally { }
             game.m_Info.m_LoggedIn = true;
+
+            AMXPublic p;
+            foreach (Script x in Manager.m_Scripts)
+            {
+                p = x.m_Amx.FindPublic("OnGameAvailable");
+                if (p != null) p.Execute();
+            }
+
             game.m_Info.m_IsBusy = false;
         }
     }

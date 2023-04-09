@@ -25,8 +25,6 @@ namespace MyFreeFarmer.Game.API
             if (NewsBox.IsShown(game)) NewsBox.Close(game);
             if (GlobalBox.IsShown(game)) GlobalBox.Close(game);
 
-            game.m_Info.m_currentLand = landid;
-
             try
             {
                 var x = Utils.FindElementIfExists(game.m_Driver, By.XPath(".//*[@id='farm" + game.m_Info.CurrentFarm().ToString() + "_pos" + landid.ToString() + "']"));
@@ -35,7 +33,7 @@ namespace MyFreeFarmer.Game.API
             }
             catch (Exception ex){
                 Log.Exception(ex);
-                game.m_Info.m_currentLand = 0; }
+            }
             finally {  }
 
             //Safety check: wait until the "container" of each position is shown.
@@ -49,7 +47,7 @@ namespace MyFreeFarmer.Game.API
             }
 
 
-            Log.Debug(" - m.Info CurrentLand is = " + game.m_Info.m_currentLand);
+            Log.Debug(" - m.Info CurrentLand is = " + game.m_Info.GetCurrentPosition());
             return true;
         }
 
@@ -60,12 +58,11 @@ namespace MyFreeFarmer.Game.API
             if (NewsBox.IsShown(game)) NewsBox.Close(game);
             if (GlobalBox.IsShown(game)) GlobalBox.Close(game);
 
-            if (game.m_Info.m_currentLand == 0) return false;
+            if (game.m_Info.GetCurrentPosition() == 0) return false;
 
             game.m_JavaScript.ExecuteScript("showMain();");
 
-            game.m_Info.m_currentLand = 0;
-            Log.Debug("CURLAND:" + game.m_Info.m_currentLand);
+            Log.Debug("CURLAND:" + game.m_Info.GetCurrentPosition());
             return true;
         }
 
@@ -82,25 +79,24 @@ namespace MyFreeFarmer.Game.API
         public static void CultivateField(Farmer game, int fieldid)
         {
             game.m_JavaScript.ExecuteScript("selectMode(0, true, selected);");
-            game.m_JavaScript.ExecuteScript("parent.cache_me(" + game.m_Info.m_currentLand + ", " + fieldid + ", garten_prod[" + fieldid + "], garten_kategorie[" + fieldid + "]);");
+            game.m_JavaScript.ExecuteScript("parent.cache_me(" + game.m_Info.GetCurrentPosition() + ", " + fieldid + ", garten_prod[" + fieldid + "], garten_kategorie[" + fieldid + "]);");
         }
         
         public static void HarvestField(Farmer game, int fieldid)
         {
             game.m_JavaScript.ExecuteScript("selectMode(1, true, selected);");
-            game.m_JavaScript.ExecuteScript("parent.cache_me(" + game.m_Info.m_currentLand + ", " + fieldid + ", garten_prod[" + fieldid + "], garten_kategorie[" + fieldid + "]);");
+            game.m_JavaScript.ExecuteScript("parent.cache_me(" + game.m_Info.GetCurrentPosition() + ", " + fieldid + ", garten_prod[" + fieldid + "], garten_kategorie[" + fieldid + "]);");
         }
 
         public static void WaterField(Farmer game, int fieldid)
         {
             game.m_JavaScript.ExecuteScript("selectMode(2, true, selected);");
-            game.m_JavaScript.ExecuteScript("parent.cache_me(" + game.m_Info.m_currentLand + ", " + fieldid + ", garten_prod[" + fieldid + "], garten_kategorie[" + fieldid + "]);");
+            game.m_JavaScript.ExecuteScript("parent.cache_me(" + game.m_Info.GetCurrentPosition() + ", " + fieldid + ", garten_prod[" + fieldid + "], garten_kategorie[" + fieldid + "]);");
         }
 
         public static void ClearField(Farmer game, int fieldid)
         {
-            Console.WriteLine("raeumeFeld(" + game.m_Info.m_currentLand + ", " + fieldid + ");");
-            game.m_JavaScript.ExecuteScript("raeumeFeld(\" + game.m_Info.m_currentLand + \", \" + fieldid + \");");
+            game.m_JavaScript.ExecuteScript("raeumeFeld(" + game.m_Info.GetCurrentPosition() + ", " + fieldid + ");");
         }
 
 

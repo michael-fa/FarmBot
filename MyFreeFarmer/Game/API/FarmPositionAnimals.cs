@@ -10,6 +10,7 @@ namespace MyFreeFarmer.Game.API
     {
         public static bool Retrieve()
         {
+
             return true;
         }
 

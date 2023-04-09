@@ -52,10 +52,22 @@ namespace MyFreeFarmer.Game
             }
             return ct;
         }
-
-        //Dumb because we assume we controlled everything from the script, yet if we wanna take control for 2 secs or so the switching of positions won't be detected/this value is not correct anymore.
-        public int m_currentLand = 0; //use buildinginfo and its available index? idk
         
+        public Int64 GetCurrentPosition()
+        {
+            Int64 ret = 0;
+            try
+            {
+                ret = (Int64)m_Game.m_JavaScript.ExecuteScript("return currentposition");
+            }
+            catch(Exception e)
+            {
+
+            }
+                
+            return ret;
+        }
+
         public Int64 GetCurrentRack()
         {
             return (Int64)m_Game.m_JavaScript.ExecuteScript("return racksort");

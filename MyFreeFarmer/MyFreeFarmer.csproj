@@ -4,18 +4,12 @@
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Platforms>AnyCPU;x86</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Game\Routines\Manager.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <PackageReference Include="AMXWrapperCore" Version="1.0.1" />
     <PackageReference Include="Selenium.WebDriver" Version="4.8.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Game\Routines\" />
   </ItemGroup>
 
 </Project>

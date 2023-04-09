@@ -43,6 +43,8 @@ namespace cli
             switch (sig)
             {
                 case CtrlType.CTRL_C_EVENT:
+                    CloseSafely();
+                    return false;
                 case CtrlType.CTRL_LOGOFF_EVENT:
                 case CtrlType.CTRL_SHUTDOWN_EVENT:
                 case CtrlType.CTRL_CLOSE_EVENT:
@@ -63,7 +65,7 @@ namespace cli
             SetConsoleCtrlHandler(m_Handler, true);
 
             string[] m_LoginData = { "", "", "" };
-            
+
             Console.WriteLine("Hello, World!");
 
             if (!Directory.Exists(Environment.CurrentDirectory + @"/Settings/")) Directory.CreateDirectory(Environment.CurrentDirectory + @"/Settings/");
@@ -95,7 +97,6 @@ namespace cli
             m_LoginData[1] = m_CfgUser.Read("username");
             m_LoginData[2] = m_CfgUser.Read("password");
             m_Farmer = new Farmer(Convert.ToInt32(m_LoginData[0]), m_LoginData[1], m_LoginData[2]);
-
             m_CmdThread = new Thread(() => CommandHandler());
             m_CmdThread.Start();
         }
@@ -120,14 +121,13 @@ namespace cli
                             break;
 
                         case "test":
-                            Console.WriteLine("TEST CMD CALLED");
-                            FarmPositions.ClearField(m_Farmer, Int32.Parse(args[1]));
+                            GlobalAlert.Show(m_Farmer, "HELLO!");
                             break;
                     }
                 }
                 Thread.Sleep(100);
                 input = Console.ReadLine()!;
-                args = input.Split(' ');
+                if(input != null)args = input.Split(' ');
             }
         }
 
