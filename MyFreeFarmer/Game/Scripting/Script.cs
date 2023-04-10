@@ -132,7 +132,13 @@ namespace MyFreeFarmer.Game.Scripting
             m_Amx.Register("HideGlobalBox", (amx1, args1) => Scripting.Natives.HideGlobalBox(amx1, args1, this, m_Instance));
             m_Amx.Register("IsGlobalBoxShown", (amx1, args1) => Scripting.Natives.IsGlobalBoxShown(amx1, args1, this, m_Instance));
 
-            m_Amx.Register("PrintGlobalAlert", (amx1, args1) => Scripting.Natives.PrintGlobalAlert(amx1, args1, this, m_Instance));
+            m_Amx.Register("DisplayGlobalAlert", (amx1, args1) => Scripting.Natives.PrintGlobalAlert(amx1, args1, this, m_Instance));
+
+            m_Amx.Register("LoginBonusIsOpen", (amx1, args1) => Scripting.Natives.LoginBonusIsOpen(amx1, args1, this, m_Instance));
+            m_Amx.Register("CloseLoginBonus", (amx1, args1) => Scripting.Natives.CloseLoginBonus(amx1, args1, this, m_Instance));
+
+            m_Amx.Register("SelectRackItem", (amx1, args1) => Scripting.Natives.SelectRackItem(amx1, args1, this, m_Instance);
+
             return true;
         }
     }
