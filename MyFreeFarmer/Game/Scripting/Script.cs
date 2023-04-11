@@ -137,7 +137,7 @@ namespace MyFreeFarmer.Game.Scripting
             m_Amx.Register("LoginBonusIsOpen", (amx1, args1) => Scripting.Natives.LoginBonusIsOpen(amx1, args1, this, m_Instance));
             m_Amx.Register("CloseLoginBonus", (amx1, args1) => Scripting.Natives.CloseLoginBonus(amx1, args1, this, m_Instance));
 
-            m_Amx.Register("SelectRackItem", (amx1, args1) => Scripting.Natives.SelectRackItem(amx1, args1, this, m_Instance);
+            m_Amx.Register("SelectRackItem", (amx1, args1) => Scripting.Natives.SelectRackItem(amx1, args1, this, m_Instance));
 
             return true;
         }
