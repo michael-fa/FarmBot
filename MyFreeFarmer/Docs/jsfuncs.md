@@ -122,6 +122,16 @@ globalBox((string)"title", (string)"content", (function)onClickYes(), (function)
 **_As for the first paramters it should work fine as explained!_**
 #### :o: Marked as uncompleted in its documentation
 
+***
 
+### Select item from rack
 
+:info: To interact with on positions (e.g planting on farm land)
+```javascript
+globalBox((string)"title", (string)"content", (function)onClickYes(), (function)onClickCancel, (bool)no_cancel);
+```
+>* **Parameters:**
+>    * `(int)itemid`: ID of the item.
 
+**_:warning: See [ITEM IDs](https://github.com/michael-fa/FarmBot/blob/master/MyFreeFarmer/Docs/item_ids.md) for more!._**\
+### :heavy_check_mark: Function documentation has been marked as done.
