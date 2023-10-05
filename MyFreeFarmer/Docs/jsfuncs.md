@@ -2,9 +2,7 @@
 
  :o: ``The function's documentation isn't 100% factual.``\
  :heavy_check_mark: ``This function is marked as factual, nothing more to add.``\
- :raised_back_of_hand: ``Function previously marked as done and factual has been re-visited and changed due to notice.``\
-
-\
+ :raised_back_of_hand: ``Function previously marked as done and factual has been re-visited and changed due to notice.``
 
 ***
 
@@ -16,6 +14,8 @@ createToken();
 >* **This function has no parameters.
 
 **_You still need to insert the user name, password and choose between servers "yourself" via html click_**
+
+#### :o: Marked as uncompleted in its documentation
 
 ***
 
@@ -33,7 +33,7 @@ farmHoverPosition( (bool)toggle, (int)farm_id, (int)pos_id);
 ```javascript
 showDiv('farm_buttons1_1'); 
 ```
-
+#### :o: Marked as uncompleted in its documentation
 
 ***
 
