@@ -8,6 +8,10 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
+
+ //Note
+//Unload/Reload should check for
+//scriptfile hash Differences because of name problems
 namespace MyFreeFarmer.Game.Scripting
 {
     static class Manager
