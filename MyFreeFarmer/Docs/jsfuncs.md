@@ -1,4 +1,7 @@
 ﻿## Stuff to know
+ \
+ Please remember that this are the "bare" JS functions, which we can call and execute ourselfes while in game.\
+ So in every sense this is just a developer's' cheat sheet.\
 
  :o: ``The function's documentation isn't 100% factual.``\
  :heavy_check_mark: ``This function is marked as factual, nothing more to add.``\
