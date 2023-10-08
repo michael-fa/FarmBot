@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="AMXWrapperCore" Version="1.0.1" />
-    <PackageReference Include="Selenium.WebDriver" Version="4.8.1" />
+    <PackageReference Include="Selenium.WebDriver" Version="4.13.1" />
   </ItemGroup>
 
 </Project>

@@ -1,7 +1,6 @@
 ﻿using MyFreeFarmer;
 using MyFreeFarmer.Game.API;
 using OpenQA.Selenium.DevTools;
-using OpenQA.Selenium.DevTools.V108.Page;
 using System.Collections;
 using System.Runtime.InteropServices;
 using System.Text;

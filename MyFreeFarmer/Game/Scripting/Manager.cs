@@ -1,5 +1,4 @@
 ﻿using AMXWrapperCore;
-using OpenQA.Selenium.DevTools.V108.Schema;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

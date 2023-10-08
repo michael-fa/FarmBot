@@ -135,3 +135,27 @@ globalBox((string)"title", (string)"content", (function)onClickYes(), (function)
 
 **_:warning: See [ITEM IDs](https://github.com/michael-fa/FarmBot/blob/master/MyFreeFarmer/Docs/item_ids.md) for more!._**\
 ### :heavy_check_mark: Function documentation has been marked as done.
+
+***
+
+### Handle Farm Customers (Yes, No)
+
+:info: Accept a customers trade offer, or deny.
+```javascript
+HandleFarmi((int)id, (int)action);
+```
+>* **Parameters:**
+>    * `(int)id`: ID of the customer/farmi. 1-16 max.
+>    * `(int)action`: Yes or no **!! See below**
+
+**_warning: Note that to get back to this one later, you could use:_**
+
+#### Handle Later
+
+```javascript
+clearCart();
+```
+
+#### :o: Both marked as uncompleted in its documentation
+
+***
