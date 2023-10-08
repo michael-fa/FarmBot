@@ -87,7 +87,7 @@ mapGo2Location((string)location, (int)location_index);
 
 ### Planting item on garden spot (garden)
 
-:info: First make sure you opened the position (farm land) first. 
+:grey_question: First make sure you opened the position (farm land) first. 
 
 ```javascript
 parent.cache_me((int)pos, (int)item_id, (int[])prod_idx = garten_prod[item_id], (int[])cat_idx = garten_kategorie[item_id]);
@@ -106,7 +106,7 @@ parent.cache_me((int)pos, (int)item_id, (int[])prod_idx = garten_prod[item_id], 
 
 ### Display a global box
 
-:info: This displays a global box kind of as a info box, with title, text, check and close icon.
+:grey_question: This displays a global box kind of as a info box, with title, text, check and close icon.
 
 ```javascript
 globalBox((string)"title", (string)"content", (function)onClickYes(), (function)onClickCancel, (bool)no_cancel);
@@ -126,7 +126,7 @@ globalBox((string)"title", (string)"content", (function)onClickYes(), (function)
 
 ### Select item from rack
 
-:info: To interact with on positions (e.g planting on farm land)
+:grey_question: To interact with on positions (e.g planting on farm land)
 ```javascript
 globalBox((string)"title", (string)"content", (function)onClickYes(), (function)onClickCancel, (bool)no_cancel);
 ```
@@ -140,7 +140,7 @@ globalBox((string)"title", (string)"content", (function)onClickYes(), (function)
 
 ### Handle Farm Customers (Yes, No)
 
-:info: Accept a customers trade offer, or deny.
+:grey_question: Accept a customers trade offer, or deny.
 ```javascript
 HandleFarmi((int)id, (int)action);
 ```
@@ -148,9 +148,9 @@ HandleFarmi((int)id, (int)action);
 >    * `(int)id`: ID of the customer/farmi. 1-16 max.
 >    * `(int)action`: Yes or no **!! See below**
 
-**_warning: Note that to get back to this one later, you could use:_**
+**_:warning: Note that to get back to this one later, you could use:_**
 
-#### Handle Later
+#### Handle Later / Clear a cart
 
 ```javascript
 clearCart();
