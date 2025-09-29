@@ -44,7 +44,7 @@ namespace MyFreeFarmer.Game.API
             {
                 switch (ex.InnerException)
                 {
-                    case NoSuchElementException: ; break;
+                    case NoSuchElementException:; break;
                     case ElementClickInterceptedException: break;
                 }
             }

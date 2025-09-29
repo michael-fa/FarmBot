@@ -44,11 +44,11 @@ namespace MyFreeFarmer.Game.Scripting
 
         public void StopAllTimers()
         {
-         /*   foreach (ScriptTimer timer in DiscordAMX.m_ScriptTimers)
-            {
-                timer.KillTimer();
-            }
-         */
+            /*   foreach (ScriptTimer timer in DiscordAMX.m_ScriptTimers)
+               {
+                   timer.KillTimer();
+               }
+            */
         }
 
 
@@ -138,6 +138,17 @@ namespace MyFreeFarmer.Game.Scripting
             m_Amx.Register("CloseLoginBonus", (amx1, args1) => Scripting.Natives.CloseLoginBonus(amx1, args1, this, m_Instance));
 
             m_Amx.Register("SelectRackItem", (amx1, args1) => Scripting.Natives.SelectRackItem(amx1, args1, this, m_Instance));
+
+            m_Amx.Register("GetCurrentFarmPosition", (amx1, args1) => Scripting.Natives.GetCurrentFarmPosition(amx1, args1, this, m_Instance));
+            m_Amx.Register("OpenFarmPosition", (amx1, args1) => Scripting.Natives.OpenFarmPosition(amx1, args1, this, m_Instance));
+            m_Amx.Register("CloseCurrentFarmPosition", (amx1, args1) => Scripting.Natives.CloseCurrentFarmPosition(amx1, args1, this, m_Instance));
+            m_Amx.Register("GetFarmPositionType", (amx1, args1) => Scripting.Natives.GetFarmPositionType(amx1, args1, this, m_Instance));
+            m_Amx.Register("HarvestAllFields", (amx1, args1) => Scripting.Natives.HarvestAllFields(amx1, args1, this, m_Instance));
+            m_Amx.Register("HarvestFieldInCurrentPos", (amx1, args1) => Scripting.Natives.HarvestFieldInCurrentPos(amx1, args1, this, m_Instance));
+            m_Amx.Register("CultivateFieldInCurrentPos", (amx1, args1) => Scripting.Natives.CultivateFieldInCurrentPos(amx1, args1, this, m_Instance));
+            m_Amx.Register("WaterFieldInCurrentPos", (amx1, args1) => Scripting.Natives.WaterFieldInCurrentPos(amx1, args1, this, m_Instance));
+            m_Amx.Register("HarvestGarden", (amx1, args1) => Scripting.Natives.HarvestGarden(amx1, args1, this, m_Instance));
+            m_Amx.Register("WaterGarden", (amx1, args1) => Scripting.Natives.WaterGarden(amx1, args1, this, m_Instance));
 
             return true;
         }

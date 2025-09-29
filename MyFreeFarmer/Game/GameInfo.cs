@@ -16,6 +16,7 @@ namespace MyFreeFarmer.Game
         public int m_loginServer;
         public string m_loginUser;
         public string m_loginPassword;
+        public int m_Pos = 0; //Field/Factory/Animals
         private Farmer m_Game;
 
         public bool m_IsBusy = false;
@@ -25,7 +26,7 @@ namespace MyFreeFarmer.Game
             m_Game    = game;
             m_loginServer = pServer;   
             m_loginUser = pUser;   
-            m_loginPassword = pPass;   
+            m_loginPassword = pPass;
         }
 
         public bool m_LoggedIn = false;
@@ -52,25 +53,21 @@ namespace MyFreeFarmer.Game
             }
             return ct;
         }
-        
-        public Int64 GetCurrentPosition()
-        {
-            Int64 ret = 0;
-            try
-            {
-                ret = (Int64)m_Game.m_JavaScript.ExecuteScript("return currentposition");
-            }
-            catch(Exception e)
-            {
 
-            }
-                
-            return ret;
+        public int GetCurrentPosition()
+        {
+            return m_Pos;
+        }
+
+        public void SetCurrentPosition(int _i)
+        {
+            Console.WriteLine("&&&/$%§%§$%$debug called");
+            m_Pos = _i;
         }
 
         public Int64 GetCurrentRack()
         {
-            return (Int64)m_Game.m_JavaScript.ExecuteScript("return racksort");
+            return (Int32)m_Game.m_JavaScript.ExecuteScript("return racksort");
         }
 
         public Int64 GetLevel()

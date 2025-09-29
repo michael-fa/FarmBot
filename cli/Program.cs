@@ -96,14 +96,16 @@ namespace cli
             m_LoginData[1] = m_CfgUser.Read("username");
             m_LoginData[2] = m_CfgUser.Read("password");
             m_Farmer = new Farmer(Convert.ToInt32(m_LoginData[0]), m_LoginData[1], m_LoginData[2]);
-            m_CmdThread = new Thread(() => CommandHandler());
-            m_CmdThread.Start();
+            //m_CmdThread = new Thread(() => CommandHandler());
+            //m_CmdThread.Start();
         }
 
-        static public void CommandHandler()
+        /*static public void CommandHandler()
         {
             string input = Console.ReadLine()!;
             string[] args = input.Split(' ');
+
+            m_Farmer.ScriptCall_Command(input);
 
             while (m_Running)
             {
@@ -120,7 +122,7 @@ namespace cli
                             break;
 
                         case "test":
-                            GlobalAlert.Show(m_Farmer, "HELLO!");
+                            //GlobalBox.Show(m_Farmer,"HALLO JASIME", "Pajoma ist scheiße", GlobalBox.GB_DISPLAY_STYLE.ICONS_ALL);
                             break;
                     }
                 }
@@ -128,7 +130,7 @@ namespace cli
                 input = Console.ReadLine()!;
                 if(input != null)args = input.Split(' ');
             }
-        }
+        }*/
 
         static void CustomCode()
         {

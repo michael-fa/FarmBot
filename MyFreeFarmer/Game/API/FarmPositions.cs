@@ -31,10 +31,11 @@ namespace MyFreeFarmer.Game.API
                 if (GetType(game, landid) == 0) return false;
                 if (x != null && x.Displayed) x.Click();
             }
-            catch (Exception ex){
+            catch (Exception ex)
+            {
                 Log.Exception(ex);
             }
-            finally {  }
+            finally { }
 
             //Safety check: wait until the "container" of each position is shown.
             if (GetType(game, landid) == 1)
@@ -45,6 +46,8 @@ namespace MyFreeFarmer.Game.API
             {
                 game.m_JavaScript.ExecuteScript("initLocation(" + landid + ");");
             }
+
+            game.m_Info.SetCurrentPosition(landid);
 
 
             Log.Debug(" - m.Info CurrentLand is = " + game.m_Info.GetCurrentPosition());
@@ -60,15 +63,15 @@ namespace MyFreeFarmer.Game.API
 
             if (game.m_Info.GetCurrentPosition() == 0) return false;
 
-            game.m_JavaScript.ExecuteScript("showMain();");
+            game.m_JavaScript.ExecuteScript("showMain(); ");
+            game.m_Info.SetCurrentPosition(0);
 
-            Log.Debug("CURLAND:" + game.m_Info.GetCurrentPosition());
             return true;
         }
 
-        public static Int64 GetType(Farmer game, int landid) 
+        public static int GetType(Farmer game, int landid)
         {
-            return (Int64)game.m_JavaScript.ExecuteScript("return parseInt(farms_data['farms'][" + game.m_Info.CurrentFarm() + "][" + landid + "]['buildingid']);");
+            return (int)Convert.ToInt32((Int64)game.m_JavaScript.ExecuteScript("return parseInt(farms_data['farms'][" + game.m_Info.CurrentFarm() + "][" + landid + "]['buildingid']);"));
         }
 
         /// <summary>
@@ -81,7 +84,7 @@ namespace MyFreeFarmer.Game.API
             game.m_JavaScript.ExecuteScript("selectMode(0, true, selected);");
             game.m_JavaScript.ExecuteScript("parent.cache_me(" + game.m_Info.GetCurrentPosition() + ", " + fieldid + ", garten_prod[" + fieldid + "], garten_kategorie[" + fieldid + "]);");
         }
-        
+
         public static void HarvestField(Farmer game, int fieldid)
         {
             game.m_JavaScript.ExecuteScript("selectMode(1, true, selected);");

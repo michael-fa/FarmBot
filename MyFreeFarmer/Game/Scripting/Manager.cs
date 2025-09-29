@@ -47,6 +47,7 @@ namespace MyFreeFarmer.Game.Scripting
                 }
 
                 Log.Debug(".. generated script file hash: " + BitConverter.ToString(scr.m_Hash).Replace("-", "").ToLowerInvariant() + "!");
+                Log.Info("[SCRIPT] Loading script " + scr.m_amxFile.Split('\\').Last<string>() + "\n");
             }
 
             if(m_InitScript == null)

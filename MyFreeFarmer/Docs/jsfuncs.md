@@ -1,11 +1,11 @@
 ﻿## Stuff to know
  \
- Please remember that this are the "bare" JS functions, which we can call and execute ourselfes while in game.\
+ Please remember that these are the "bare" JS functions, which we can call and execute ourselfes while in game.\
  So in every sense this is just a developer's' cheat sheet.
 
  :o: ``The function's documentation isn't 100% factual.``\
  :heavy_check_mark: ``This information is marked as factual, nothing more to add.``\
- :raised_back_of_hand: ``Function previously marked as done and factual has been re-visited and changed due to notice.``
+ :raised_back_of_hand: ``Information previously marked as done and factual has been re-visited and changed due to notice.``
 
 ***
 
@@ -83,7 +83,7 @@ mapGo2Location((string)location, (int)location_index);
 
 **_This navigates the game to an area, also a sub-area if available!_**\
 **_:warning: See [Location Names](https://github.com/michael-fa/FarmBot/tree/master/MyFreeFarmer/location_names.md) for more!._**\
-#### :o: Marked as uncompleted in its documentation
+#### :o: Marked as incompleted in its documentation
 :bulb: Using this as a farm is the equivalent of initLocation which can be called from anywhere (needs more checking!)
 
 ***
@@ -103,7 +103,7 @@ parent.cache_me((int)pos, (int)item_id, (int[])prod_idx = garten_prod[item_id], 
 
 **_This should plant / cultivate a spot on a acre locted on your farm._**
 **_To place on another farm you should first move to it, then use this function._**
-#### :o: Marked as uncompleted in its documentation
+#### :o: Marked as incompleted in its documentation
 
 ***
 
@@ -123,7 +123,7 @@ globalBox((string)"title", (string)"content", (function)onClickYes(), (function)
 >    * `unk`: This parameter has not been identified yet.
 >    * `unk`: This parameter has not been identified yet.
 **_As for the first paramters it should work fine as explained!_**
-#### :o: Marked as uncompleted in its documentation
+#### :o: Marked as incompleted in its documentation
 
 ***
 
@@ -159,6 +159,6 @@ HandleFarmi((int)id, (int)action);
 clearCart();
 ```
 
-#### :o: Both marked as uncompleted in its documentation
+#### :o: Both marked as incompleted in its documentation
 
 ***
