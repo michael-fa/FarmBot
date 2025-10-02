@@ -8,22 +8,8 @@ This is a research and progression thing for me personally but it'll be released
 
 ## Planned: 
 
-### Presets / Action Templates 
-The bot does check for basic stuff like if premium productions slots 
-Are available and filling/retrieving them too.. but for fields / gardens and 
-some other stuff we want user account specific acting and this is done via our own 
-template language that are in plain english .txt format.
-Default ones are shipped for a Level 1 account. 
-
-#### Example template rules for harvest action
-tmpl_farm_harvest.txt:\
-`skip <plant_id>` will apply a rule that a specific plant is to be left on the field.
-
-tmpl_farm_plant.txt:\
-`plant <field_id> <plant_id>` will automatically plant given ID for a field. Use "all" as field_id to fill all until empty/max reached.\
-`tryboost` Tries to shorten the growing phase for the current garden.\
-`remove_if_obscurred <type: All, tree, mole, growth>` If enough money, each field will be cleared first and then cultivated.\
-
+Gameplay 'functions', which normally are triggered by a player clicking or interacting with the game inside the browser, are simulated using a [Webdriver] and on top of that, all those actions can be scripted using the '[Pawn]' scripting language.
+For harvesting a single field to watering / planting all at once - everything has it'S function. 
 
 ### Gardens/Standard fields
  - Auto harvesting
@@ -34,3 +20,8 @@ tmpl_farm_plant.txt:\
 ### 🐑🐏🐮🐝🐟 Farms
  - Auto retrieve finished product
  - Auto feed (after template/preset)
+
+
+[Webdriver]([https://www.youtube.com/watch?v=l3HopvETf3s](https://www.google.com/search?q=what+is+a+webdriver&client=firefox-b-d&sca_esv=8c23647d28d0699c&sxsrf=AE3TifPDQvrIhqpCW9K2lEU8SvG5nY2nVA%3A1759443364978&ei=pPneaPy1O4aU9u8PtNWk6AM&ved=0ahUKEwj8l5amxYaQAxUGiv0HHbQqCT0Q4dUDCBI&uact=5&oq=what+is+a+webdriver&gs_lp=Egxnd3Mtd2l6LXNlcnAiE3doYXQgaXMgYSB3ZWJkcml2ZXIyCBAAGIAEGMsBMggQABiABBjLATIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeMggQABgWGAoYHjIIEAAYFhgKGB4yBRAAGO8FSN8XULwGWK4XcAF4AZABAJgBT6AB8AmqAQIxOLgBA8gBAPgBAZgCE6AC6wrCAgoQABiwAxjWBBhHwgINEAAYgAQYsAMYQxiKBcICBBAjGCfCAgoQIxiABBgnGIoFwgIKECMY8AUYJxjJAsICChAAGIAEGEMYigXCAgsQABiABBixAxiDAcICEBAAGIAEGLEDGEMYgwEYigXCAgUQABiABMICEBAjGPAFGIAEGCcYyQIYigXCAggQABiABBixA8ICDhAuGIAEGLEDGNEDGMcBwgILEC4YgAQYsQMY1ALCAgQQABgDwgIFEC4YgATCAgoQABiABBgKGMsBmAMAiAYBkAYKkgcCMTmgB7V2sgcCMTi4B-UKwgcIMC4yLjE1LjLIB1o&sclient=gws-wiz-serp))
+
+[Pawn](https://www.compuphase.com/pawn/pawn.htm)
