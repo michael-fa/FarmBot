@@ -17,5 +17,10 @@ namespace MyFreeFarmer.Game.Scripting
             API.Rack.SelectItem(game, args1[0].AsInt32());
             return 1;
         }
+
+        public static int GetSelectedRackItem(AMX amx1, AMXArgumentList args1, Script caller_script, Farmer game)
+        {
+            return API.Rack.GetSelectedItem(game, args1[0].AsInt32());
+        }
     }
 }
