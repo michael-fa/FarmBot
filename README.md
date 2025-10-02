@@ -8,7 +8,7 @@ This is a research and progression thing for me personally but it'll be released
 
 ## Planned: 
 
-Gameplay 'functions', which normally are triggered by a player clicking or interacting with the game inside the browser, are simulated using a [Webdriver] and on top of that, all those actions can be scripted using the [Pawn] scripting language.
+Gameplay 'functions', which normally are triggered by a player clicking or interacting with the game inside the browser, are simulated using a [Webdriver] and on top of that, all those actions can be scripted using the ![Pawn] scripting language.
 For harvesting a single field to watering / planting all at once - everything has it'S function. 
 
 ### Gardens/Standard fields
