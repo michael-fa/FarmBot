@@ -1,15 +1,31 @@
 # FarmBot :warning:  WIP
-A bot for your free farm, aiming to do stuff automatic.
+A bot for my free farm, aiming to do stuff automatic.
 
 ## :tv: [Streaming on YouTube!](https://www.youtube.com/watch?v=l3HopvETf3s)
 
-❗ Note that doing bot stuff on your account will lead to an instant ban, once official game moderators have noticed.
+❗ Remember that doing bot stuff on your account will lead to an instant ban, once official game moderators have noticed.
 This is a research and progression thing for me personally but it'll be released soon.
 
 ## Planned: 
 
 Gameplay 'functions', which normally are triggered by a player clicking or interacting with the game inside the browser, are simulated using a [Webdriver] and on top of that, all those actions can be scripted using the [Pawn] scripting language.
-For harvesting a single field to watering / planting all at once - everything has it'S function. 
+For harvesting a single field to watering / planting all at once - everything has it's function. 
+So imagine you have to loop 'x' through 1 to 120 and just call HarvestGarden(x) and done. 
+But there are functions like HarvestAll, WaterAll and so on..
+
+### Notes
+ - I haven't found any limits calling the scripting functions in like a loop without wait/sleep
+   - The reason is that most of the time I try to run the JS functons from the game itself, using INSPECT with the browser (easy af)
+   
+   1. One of the six spots on each farm is called a (Farm)position.
+   2. A farm, any market, picknic place and all are called Locations.
+   3. Factory stands for bakeries, cheese-factory and other (food-) processing
+   4. Building or animal means any animal housing.
+  
+   #### State of project
+   - Given my available free time, it is already possible to compile scripts. I won't be putting out a final executable.
+   - I am willing to give away "private versions" though. (Meaning also that I won't be publishing ALL code, leaving out future planned stuff.
+   
 
 ### Gardens/Standard fields
  - Auto harvesting
