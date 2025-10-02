@@ -123,6 +123,7 @@ globalBox((string)"title", (string)"content", (function)onClickYes(), (function)
 >    * `unk`: This parameter has not been identified yet.
 >    * `unk`: This parameter has not been identified yet.
 **_As for the first paramters it should work fine as explained!_**
+**_Also it's important to know that when displaying the global box, it is not shown when displaying it right before a globalaltert or by opening a farm position!_**
 #### :o: Marked as incompleted in its documentation
 
 ***
