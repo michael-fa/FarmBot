@@ -14,13 +14,12 @@ So imagine you have to loop 'x' through 1 to 120 and just call HarvestGarden(x) 
 But there are functions like HarvestAll, WaterAll and so on..
 
 ### Notes
- - I haven't found any limits calling the scripting functions in like a loop without wait/sleep
-   - The reason is that most of the time I try to run the JS functons from the game itself, using INSPECT with the browser (easy af)
+ - I haven't found any limitations when calling the scripting functions in like a loop without wait/sleep. I try to run the JS functons from the game itself, using INSPECT with the browser (easy af) whenever its possible.
    
-   1. One of the six spots on each farm is called a (Farm)position.
-   2. A farm, any market, picknic place and all are called Locations.
-   3. Factory stands for bakeries, cheese-factory and other (food-) processing
-   4. Building or animal means any animal housing.
+1. One of the six spots on each farm is called a (Farm)position.
+2. A farm, any market, picknic place and all are called Locations.
+3. Factory stands for bakeries, cheese-factory and other (food-) processing
+4. Building or animal means any animal housing.
   
    #### State of project
    - Given my available free time, it is already possible to compile scripts. I won't be putting out a final executable.
