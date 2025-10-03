@@ -4,7 +4,7 @@ A bot for my free farm, aiming to do stuff automatic.
 ## :tv: [Streaming on YouTube!](https://www.youtube.com/watch?v=l3HopvETf3s)
 
 ❗ Remember that doing bot stuff on your account will lead to an instant ban, once official game moderators have noticed.
-This is a research and progression thing for me personally but it'll be released soon.
+This is a research and progression thing for me personally but I am willing to hand out working versions of this if anyone is interested and offers a small donation.
 
 ## Planned: 
 
