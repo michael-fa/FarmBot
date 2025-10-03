@@ -15,13 +15,14 @@ namespace MyFreeFarmer.Game.Scripting
         public AMX m_Amx;
         public Farmer m_Instance;
         public byte[] m_Hash = null!;
-        //public List<ScriptTimer> m_ScriptTimers;
+        public List<ScriptTimer> m_ScriptTimers;
 
 
         public Script(Farmer inst, string _amxFile)
         {
             this.m_Instance = inst;
             this.m_amxFile = _amxFile;
+            m_ScriptTimers = new List<ScriptTimer>();
             try
             {
                 m_Amx = new AMX(_amxFile);
@@ -127,10 +128,17 @@ namespace MyFreeFarmer.Game.Scripting
             /*m_Amx.Register("Loadscript", (amx1, args1) => Natives.CoreNatives.Loadscript(amx1, args1, this));
             m_Amx.Register("INI_ReadFloat", (amx1, args1) => Cell.FromFloat(Natives.ININatives.INI_ReadFloat(amx1, args1, this)).AsCellPtr().Value.ToInt32());
             */
+            m_Amx.Register("SetTimer", (amx1, args1) => Natives.SetTimer(amx1, args1, this));
+            m_Amx.Register("SetTimerEx", (amx1, args1) => Natives.SetTimerEx(amx1, args1, this));
+            m_Amx.Register("KillTimer", (amx1, args1) => Natives.KillTimer(amx1, args1, this));
 
             m_Amx.Register("DisplayGlobalBox", (amx1, args1) => Scripting.Natives.DisplayGlobalBox(amx1, args1, this, m_Instance));
             m_Amx.Register("HideGlobalBox", (amx1, args1) => Scripting.Natives.HideGlobalBox(amx1, args1, this, m_Instance));
             m_Amx.Register("IsGlobalBoxShown", (amx1, args1) => Scripting.Natives.IsGlobalBoxShown(amx1, args1, this, m_Instance));
+
+            m_Amx.Register("DisplayGlobalErrorBox", (amx1, args1) => Scripting.Natives.DisplayGlobalErrorBox(amx1, args1, this, m_Instance));
+            m_Amx.Register("HideGlobalErrorBox", (amx1, args1) => Scripting.Natives.HideGlobalErrorBox(amx1, args1, this, m_Instance));
+            m_Amx.Register("IsGlobalErrorBoxShown", (amx1, args1) => Scripting.Natives.IsGlobalErrorBoxShown(amx1, args1, this, m_Instance));
 
             m_Amx.Register("DisplayGlobalAlert", (amx1, args1) => Scripting.Natives.PrintGlobalAlert(amx1, args1, this, m_Instance));
 
