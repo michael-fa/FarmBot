@@ -14,7 +14,7 @@ namespace MyFreeFarmer.Game.Scripting
         public string m_amxFile = null!;
         public AMX m_Amx;
         public Farmer m_Instance;
-        public byte[] m_Hash = null!;
+        public byte[] m_Hash { get; set; } = Array.Empty<byte>();
         public List<ScriptTimer> m_ScriptTimers;
 
 
@@ -158,6 +158,8 @@ namespace MyFreeFarmer.Game.Scripting
             m_Amx.Register("WaterFieldInCurrentPos", (amx1, args1) => Scripting.Natives.WaterFieldInCurrentPos(amx1, args1, this, m_Instance));
             m_Amx.Register("HarvestGarden", (amx1, args1) => Scripting.Natives.HarvestGarden(amx1, args1, this, m_Instance));
             m_Amx.Register("WaterGarden", (amx1, args1) => Scripting.Natives.WaterGarden(amx1, args1, this, m_Instance));
+
+            m_Amx.Register("FeedAnimalPosition", (amx1, args1) => Scripting.Natives.FeedAnimalPosition(amx1, args1, this, m_Instance));
 
             return true;
         }

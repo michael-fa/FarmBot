@@ -10,12 +10,13 @@ namespace MyFreeFarmer.Game.API
     {
         public static bool Retrieve()
         {
-
+            
             return true;
         }
 
-        public static bool FeedAll(int feeding_slot)
+        public static bool FeedAnimalPosition(Farmer game, int farmid, int posid)
         {
+            game.m_JavaScript.ExecuteScript("feedCacheFire(" + farmid + ", " + posid + ");");
             return true;
         }
     }
